@@ -50,3 +50,7 @@ doska = Doska(farba="green", rozmer_x=30, rozmer_y=5,  # vyroba dosky
 plocha.bind_all('<Right>', doska.move_right)  # nabidnovat si hybanie ta tlacitko
 
 plocha.bind_all('<Left>', doska.move_left)  # nabidnovat si hybanie ta tlacitko
+
+
+# Toto je potrebné aby aj keď zbehneš tento program cez PyCharm sa reálne všetko spojené s plochou zobrazilo
+plocha.mainloop()
