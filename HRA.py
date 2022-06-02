@@ -22,7 +22,10 @@ class Doska:
             self.teleport(True)
 
     def move_left(self, event):
-        plocha.move(self.objekt, -self.rychlost, 0)  # hybanie sa dolava
+        global width
+        self.plocha.move(self.objekt, -self.rychlost, 0)
+        if self.plocha.coords(self.objekt)[0] < 0:
+            self.teleport(False)
 
     def teleport(self, poloha):
         if poloha:
