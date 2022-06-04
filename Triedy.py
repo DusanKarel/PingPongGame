@@ -1,6 +1,8 @@
 class Doska:
 
-    def __init__(self, farba, rozmer_x, rozmer_y, speed, plocha, home_x, home_y, platno_width):
+    def __init__(self, farba, rozmer_x, rozmer_y, speed, plocha, home_x,
+                 home_y,platno_width, zrychlovanie):
+        self.zrychlovanie = zrychlovanie
         self.platno_width = platno_width
         self.rychlost = speed
         self.farba = farba
@@ -14,12 +16,13 @@ class Doska:
                                               fill=farba)
 
     def speed_up(self, event):
-        self.rychlost += 1
-       # print(self.rychlost)
+        self.rychlost += self.zrychlovanie
+        # print(self.rychlost)
 
     def speed_down(self, event):
-        self.rychlost -= 1
-       # print(self.rychlost)
+        self.rychlost -= self.zrychlovanie
+        #if self.zrychlovanie == 0:
+        # print(self.rychlost)
 
     def move_right(self, event):
         self.plocha.move(self.objekt, +self.rychlost, 0)
