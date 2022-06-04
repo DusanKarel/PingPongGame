@@ -3,7 +3,6 @@ class Doska:
     def __init__(self, farba, rozmer_x, rozmer_y, speed, plocha, home_x, home_y, platno_width):
         self.platno_width = platno_width
         self.rychlost = speed
-        self.rychlost_dosky = speed
         self.farba = farba
         self.rozmer_x = rozmer_x
         self.rozmer_y = rozmer_y
@@ -13,6 +12,14 @@ class Doska:
         self.objekt = plocha.create_rectangle(home_x - rozmer_x, home_y - rozmer_y,
                                               home_x + rozmer_x, home_y + rozmer_y,
                                               fill=farba)
+
+    def speed_up(self, event):
+        self.rychlost += 1
+       # print(self.rychlost)
+
+    def speed_down(self, event):
+        self.rychlost -= 1
+       # print(self.rychlost)
 
     def move_right(self, event):
         self.plocha.move(self.objekt, +self.rychlost, 0)
@@ -24,8 +31,7 @@ class Doska:
         if self.plocha.coords(self.objekt)[0] < 0:
             self.teleport(False)
 
-
-     def teleport(self, poloha):
+    def teleport(self, poloha):
         if poloha:
             self.plocha.coords(self.objekt,
                                0, self.home_y - self.rozmer_y,
@@ -36,5 +42,3 @@ class Doska:
                                self.platno_width, self.home_y + self.rozmer_y)
         else:
             print("invalid poloha")
-
-
