@@ -1,3 +1,10 @@
+class Coords:
+
+    def __init__(self, suradnica_x, suradnica_y):
+        self.x = suradnica_x
+        self.y = suradnica_y
+
+
 class Doska:
 
     def __init__(self, farba, rozmer_x, rozmer_y, speed, plocha, home_x,
@@ -47,20 +54,25 @@ class Doska:
         else:
             print("invalid poloha")
 
+
 class Lopta:
 
-    def __init__(self, priemer, farba, home_x, home_y, plocha):
+    objekt = 0
+
+    def __init__(self, priemer, farba, home_x, home_y, plocha, speed_x, speed_y):
         self.priemer = priemer
         self.farba = farba
         self.home_x = home_x
         self.home_y = home_y
         self.plocha = plocha
-        self.objekt = plocha.create_oval(home_x - priemer, home_y - priemer,
-                                         home_x + priemer, home_y + priemer,
-                                         fill=farba)
+        self.speed_x = speed_x
+        self.speed_y = speed_y
+        self.draw()
 
     def draw(self):
         self.objekt = self.plocha.create_oval(self.home_x - self.priemer, self.home_y - self.priemer,
                                               self.home_x + self.priemer, self.home_y + self.priemer,
                                               fill=self.farba)
+
+
 

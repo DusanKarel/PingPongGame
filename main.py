@@ -32,5 +32,8 @@ plocha.bind_all('<w>', doska_2.speed_up)
 
 plocha.bind_all('<s>', doska_2.speed_down)
 
+
+lopta = Lopta(5, "white", width/2, height/2, plocha)
+
 # Toto je potrebné aby aj keď zbehneš tento program cez PyCharm sa reálne všetko spojené s plochou zobrazilo
 plocha.mainloop()
