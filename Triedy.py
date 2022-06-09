@@ -17,12 +17,13 @@ class Doska:
 
     def speed_up(self, event):
         self.rychlost += self.zrychlovanie
-        # print(self.rychlost)
+        print(self.rychlost)
 
     def speed_down(self, event):
         self.rychlost -= self.zrychlovanie
-        #if self.zrychlovanie == 0:
-        # print(self.rychlost)
+        if self.rychlost == 0:
+            self.rychlost += 1
+        print(self.rychlost)
 
     def move_right(self, event):
         self.plocha.move(self.objekt, +self.rychlost, 0)
@@ -45,3 +46,21 @@ class Doska:
                                self.platno_width, self.home_y + self.rozmer_y)
         else:
             print("invalid poloha")
+
+class Lopta:
+
+    def __init__(self, priemer, farba, home_x, home_y, plocha):
+        self.priemer = priemer
+        self.farba = farba
+        self.home_x = home_x
+        self.home_y = home_y
+        self.plocha = plocha
+        self.objekt = plocha.create_oval(home_x - priemer, home_y - priemer,
+                                         home_x + priemer, home_y + priemer,
+                                         fill=farba)
+
+    def draw(self):
+        self.objekt = self.plocha.create_oval(self.home_x - self.priemer, self.home_y - self.priemer,
+                                              self.home_x + self.priemer, self.home_y + self.priemer,
+                                              fill=self.farba)
+
