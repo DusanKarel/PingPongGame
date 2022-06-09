@@ -7,19 +7,17 @@ class Coords:
 
 class Doska:
 
-    def __init__(self, farba, rozmer_x, rozmer_y, speed, plocha, home_x,
-                 home_y,platno_width, zrychlovanie):
+    def __init__(self, farba, rozmer: Coords, speed, plocha, home: Coords,
+                 platno_width, zrychlovanie):
         self.zrychlovanie = zrychlovanie
         self.platno_width = platno_width
         self.rychlost = speed
         self.farba = farba
-        self.rozmer_x = rozmer_x
-        self.rozmer_y = rozmer_y
-        self.home_x = home_x
-        self.home_y = home_y
+        self.rozmer = rozmer
+        self.home = home
         self.plocha = plocha
-        self.objekt = plocha.create_rectangle(home_x - rozmer_x, home_y - rozmer_y,
-                                              home_x + rozmer_x, home_y + rozmer_y,
+        self.objekt = plocha.create_rectangle(home.x - rozmer.x, home.y - rozmer.y,
+                                              home.x + rozmer.x, home.y + rozmer.y,
                                               fill=farba)
 
     def speed_up(self, event):
@@ -45,12 +43,12 @@ class Doska:
     def teleport(self, poloha):
         if poloha:
             self.plocha.coords(self.objekt,
-                               0, self.home_y - self.rozmer_y,
-                               0 + 2 * self.rozmer_x, self.home_y + self.rozmer_y)
+                               0, self.home.y - self.rozmer.y,
+                               0 + 2 * self.rozmer.x, self.home.y + self.rozmer.y)
         elif not poloha:
             self.plocha.coords(self.objekt,
-                               self.platno_width - 2 * self.rozmer_x, self.home_y - self.rozmer_y,
-                               self.platno_width, self.home_y + self.rozmer_y)
+                               self.platno_width - 2 * self.rozmer.x, self.home.y - self.rozmer.y,
+                               self.platno_width, self.home.y + self.rozmer.y)
         else:
             print("invalid poloha")
 
@@ -59,19 +57,17 @@ class Lopta:
 
     objekt = 0
 
-    def __init__(self, priemer, farba, home_x, home_y, plocha, speed_x, speed_y):
+    def __init__(self, priemer, farba, home: Coords, plocha, speed: Coords):
         self.priemer = priemer
         self.farba = farba
-        self.home_x = home_x
-        self.home_y = home_y
+        self.home = home
         self.plocha = plocha
-        self.speed_x = speed_x
-        self.speed_y = speed_y
+        self.speed = speed
         self.draw()
 
     def draw(self):
-        self.objekt = self.plocha.create_oval(self.home_x - self.priemer, self.home_y - self.priemer,
-                                              self.home_x + self.priemer, self.home_y + self.priemer,
+        self.objekt = self.plocha.create_oval(self.home.x - self.priemer, self.home.y - self.priemer,
+                                              self.home.x + self.priemer, self.home.y + self.priemer,
                                               fill=self.farba)
 
 
